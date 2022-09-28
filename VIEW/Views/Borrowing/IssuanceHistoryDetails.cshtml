@@ -1,0 +1,98 @@
+﻿
+
+@model DOMAIN.Models.Borrowing
+
+@{
+    ViewData["Title"] = "Issuance Details";
+}
+
+
+
+<div class="container-fluid">
+    <p class="display-6">BOOK ISSUANCE HISTORY DETAILS</p>
+    <hr />
+    <dl class="row table-body">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IssuedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IssuedBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReturnedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReturnedDate)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReturnedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReturnedBy)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentStudent.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentStudent.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentStudent.AdminNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentStudent.AdminNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentBook.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentBook.Title)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentBook.Subject)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentBook.Subject)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentBook.SerialNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentBook.SerialNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentBook.BookSource.Source)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentBook.BookSource.Source)
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentBook.Form.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentBook.Form.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="IssuanceHistory" class="btn btn-success mt-3">Back to List</a>
+</div>
+
+
+
+
+
+

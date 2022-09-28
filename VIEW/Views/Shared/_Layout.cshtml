@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="~/lib/Font-Awesome/css/regular.min.css">
+    <link rel="stylesheet" href="~/lib/Font-Awesome/css/solid.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/VIEW.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+         <nav class="navbar navbar-expand bg-dark navbar-light fixed-top px-4 py-0">
+                 <a class="navbar-brand" href="#">
+                     <i class="fas fa-book mx-2 text-white"></i>
+                </a>
+                
+                <h5 class="text-white py-3">LMS - ADMIN HIGH SCHOOL</h5>
+                <div class="navbar-nav align-items-center ms-auto">
+                     <partial name="_LoginPartial.cshtml" />
+                    
+                </div>
+            </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row main-container">
+            <div class="col-md-3 side-menu">
+                 <partial name="_Navigation.cshtml" />
+            </div>
+            <div class=" offset-3 col-md-9 mt-4 pt-2 main-menu">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    
+          
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+     @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+</html>

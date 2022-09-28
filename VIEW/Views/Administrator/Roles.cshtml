@@ -1,0 +1,97 @@
+﻿@model USERVIEW.Areas.Identity.Data.USERVIEWUser
+
+@{
+    ViewData["Title"] = "Edit User Roles";
+}
+
+<div class="container-fluid">
+    <p class="display-6">EDIT USER ROLES</p>
+ 
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row mt-2">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" readonly />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" readonly />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6 mt-2">
+                     <div class="form-group">
+                        <label asp-for="StaffNumber" class="control-label"></label>
+                        <input asp-for="StaffNumber" class="form-control" readonly />
+                        <span asp-validation-for="StaffNumber" class="text-danger"></span>
+                    </div>
+            
+                </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" readonly />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+            
+            <div class="row mt-2">
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        
+                        <label  class="control-label">Current Roles</label>                      
+                        <select class ="form-control" asp-items="ViewBag.CurrentRoles" readonly></select>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <form asp-action="AddRole" asp-route-id="@Model.Id">
+                        
+                        <div class="form-group">
+                            <label  class="control-label">Add Role</label>
+                            <select class ="form-control" name="role" asp-items="ViewBag.RoleId" required></select>
+                        </div>
+                         <div class="form-group mt-2 pt-2">
+                            <input type="submit" value="Add Role" class="btn btn-primary mt-3" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <form asp-action="RemoveRole" asp-route-id="@Model.Id">
+                        
+                        <div class="form-group">
+                            <label  class="control-label">Remove Role</label>
+                            <select class ="form-control" name="role" asp-items="ViewBag.CurrentRoles" required></select>
+                        </div>
+                         <div class="form-group mt-2 pt-2">
+                            <input type="submit" value="Remove Role" class="btn btn-danger mt-3" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+           
+        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

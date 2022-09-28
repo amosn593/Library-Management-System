@@ -1,0 +1,153 @@
+﻿@model IEnumerable<DOMAIN.Models.Borrowing>
+@using DOMAIN.Models
+
+@{
+    ViewData["Title"] = "Issued Books";
+
+    PaginationModel pager = new PaginationModel();
+
+    int PageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        PageNo = pager.CurrentPage;
+    }
+}
+
+<div class="container-fluid">
+    <p class="display-6">ISSUED BOOKS  </p>
+    <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <form method="get" class="row" asp-controller="Borrowing" asp-action="Index">
+                        <div class="col-md-3">
+                                <label class="col-form-label">Book Serial No.</label>
+                        </div>
+                        <div class="col-md-7">
+                                 <input type="text" name="BookSerialNo" class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                             <button type="submit" class="btn btn-primary mb-3">Search</button>
+                        </div>
+   
+                   </form>
+               </div>
+               <div class="col-md-4 text-end">
+                    <p>
+                      <a asp-action="Create" class="btn btn-success"> <i class="fas fa-plus" aria-hidden="true"></i> Issue Book</a>
+                  </p>
+               </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a  asp-controller= "Report" asp-action="BorrowingReport" class="btn btn-warning"> <i class="fas fa-expand px-1" aria-hidden="true"></i>Export To CSV</a>
+                
+            </div>
+            
+
+        <hr />
+        <div class="table-responsive">
+            <table class="table ">
+                <thead class="table-head">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegisterDate)
+                        </th>
+               
+                
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentBook.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentBook.Form.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentBook.SerialNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentStudent.AdminNumber)
+                        </th>
+               
+                
+                        <th>
+                            @Html.DisplayNameFor(model => model.Issued)
+                        </th>
+                         <th>@Html.DisplayNameFor(model => model.ReturnDate)</th>
+                         <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                @if(Model != null)
+                    {
+                        int counter = 1;
+                    foreach (var item in Model) {
+                            var tm = "#myModal" + item.Id;
+                            var mid = "myModal" + item.Id;
+                            <tr>
+                                <td>@counter</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RegisterDate)
+                                </td>
+                 
+                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentBook.Subject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentBook.Form.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentBook.SerialNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentStudent.AdminNumber)
+                                </td>
+               
+                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Issued)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReturnDate)
+                                </td>
+                                <td>
+                                   <!--<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a> -->
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                    <!-- Button trigger modal -->
+                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@tm">
+                                    Return Book
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="@mid" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                   <h5 class="modal-title" id="staticBackdropLabel">Return Confirmation</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">     
+                                                     <p class="my-3">Are you sure you want to Return this Book?</p>
+                                                        <form method="post" asp-controller="Borrowing"  asp-action="Return" asp-route-id="@item.Id" >
+                                                           <button type="submit" class="btn btn-danger mx-2">Return </button>
+                                                           <button type="button" class="btn btn-success mx-2" data-bs-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            counter++;
+                    }
+                }
+                        </tbody>
+            </table>
+             <partial name="_PagerIndex" model="@pager" />
+         </div>
+    </div>
+</div>
