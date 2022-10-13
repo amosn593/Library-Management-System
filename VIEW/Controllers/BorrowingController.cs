@@ -4,6 +4,7 @@ using DOMAIN.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using USERVIEW.Areas.Identity.Data;
 
 namespace VIEW.Controllers
@@ -14,20 +15,28 @@ namespace VIEW.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly INotyfService _notyf;
         private readonly UserManager<USERVIEWUser> _userManager;
+        private readonly ILogger<Borrowing> _logger;
 
         public BorrowingController(IUnitOfWork unitOfWork,
             INotyfService notyf,
-            UserManager<USERVIEWUser> userManager)
+            UserManager<USERVIEWUser> userManager,
+            ILogger<Borrowing> logger)
         {
             _unitOfWork = unitOfWork;
             _notyf = notyf;
             _userManager = userManager;
-
+            _logger = logger;
         }
         // GET All Borrowings: BorrowingController
+        [HttpGet]
         public async Task<IActionResult> Index(string? BookSerialNo, int pg=1)
         {
-            
+            _logger.LogInformation("Received GET Request by Controller: {Controller}," +
+                " Action: {ControllerAction}, DateTime: {DateTime}", new object[]
+                {
+                    nameof(BorrowingController), nameof(Index),
+                    DateTime.Now.ToString()
+                });
 
             if (String.IsNullOrEmpty(BookSerialNo))
             {
@@ -52,8 +61,11 @@ namespace VIEW.Controllers
 
                     ViewBag.Pager = pager;
 
+                    _logger.LogInformation($"Received {data.Count} records from Borrowing Repository," +
+                        $" at {DateTime.Now.ToString()}");
+
                     return View(data);
-                    //return View(await _unitOfWork.Borrowing.GetAll());
+                   
                 }
                 catch (Exception)
                 {
@@ -87,8 +99,11 @@ namespace VIEW.Controllers
 
                     ViewBag.Pager = pager;
 
+                    _logger.LogInformation($"Received {data.Count} records from Borrowing Repository," +
+                        $" at {DateTime.Now.ToString()}");
+
                     return View(data);
-                    //return View(await _unitOfWork.Borrowing.GetByBookSerialNo(SearchParam));
+                  
                 }
                 catch (Exception)
                 {
@@ -108,9 +123,9 @@ namespace VIEW.Controllers
             }
             try
             {
+                var borrowing = await _unitOfWork.Borrowing.GetById((int)id);
 
-
-                return View(await _unitOfWork.Borrowing.GetById((int)id));
+                return View( borrowing);
             }
             catch (Exception)
             {

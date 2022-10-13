@@ -55,20 +55,20 @@ namespace USERVIEW.Controllers
 
                 //Add the user lowest role , captain
 
-                
-
+                var loggeduser = await _userManager.GetUserAsync(User);
 
                 var users = await _context.Users
                     .OrderByDescending(d => d.RegisterDate)
                     .ToListAsync();
-
+                _logger.LogInformation($"AdministratorController: Retrieved all Users by {loggeduser.Email}");
 
                 return View(users);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _notyf.Error("Something Went Wrong, Kindly Try Again!!!");
+                _logger.LogError($"Exception Occurred retrieving all users: {ex.StackTrace}");
                 return RedirectToAction(nameof(Index));
             }
 
