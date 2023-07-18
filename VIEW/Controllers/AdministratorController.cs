@@ -1,15 +1,14 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using USERVIEW.Data;
-using Microsoft.EntityFrameworkCore;
 using USERVIEW.Areas.Identity.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 
 namespace USERVIEW.Controllers
 {
-    
+
     [Authorize(Policy = "Admin")]
     public class AdministratorController : Controller
     {

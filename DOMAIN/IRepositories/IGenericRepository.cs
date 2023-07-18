@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace DOMAIN.IRepositories
+﻿namespace DOMAIN.IRepositories
 {
     public interface IGenericRepository<T> where T : class
     {

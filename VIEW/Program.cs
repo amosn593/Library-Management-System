@@ -5,7 +5,6 @@ using DOMAIN.IConfiguration;
 using DOMAIN.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using USERVIEW.Data;
 using USERVIEW.Areas.Identity.Data;
 using REPORTS.Helpers;
 using Serilog;

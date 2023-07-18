@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using USERVIEW.Areas.Identity.Data;
 
-namespace USERVIEW.Data;
+namespace USERVIEW.Areas.Identity.Data;
 
 public class USERVIEWContext : IdentityDbContext<USERVIEWUser>
 {
