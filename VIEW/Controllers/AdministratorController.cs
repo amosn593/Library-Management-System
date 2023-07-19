@@ -45,16 +45,43 @@ namespace USERVIEW.Controllers
         {
             try
             {
+                var loggeduser = await _userManager.GetUserAsync(User);
                 //first we create Admin rool
                 //IdentityRole role = new()
                 //{
-                //    Name = "Captain"
+                //    Name = "Admin",
+                    
+                //};
+                //IdentityRole role1 = new()
+                //{
+                //    Name = "Librarian",
+
+                //};
+                //IdentityRole role2 = new()
+                //{
+                //    Name = "Captain",
+
+                //};
+                //IdentityRole role3 = new()
+                //{
+                //    Name = "Principal",
+
                 //};
                 //await _roleManager.CreateAsync(role);
+                //await _roleManager.CreateAsync(role1);
+                //await _roleManager.CreateAsync(role2);
+                //await _roleManager.CreateAsync(role3);
 
                 //Add the user lowest role , captain
 
-                var loggeduser = await _userManager.GetUserAsync(User);
+                //Add user the role
+                //await _userManager.AddToRoleAsync(loggeduser, "Admin");
+                //await _userManager.AddToRoleAsync(loggeduser, "Librarian");
+                //await _userManager.AddToRoleAsync(loggeduser, "Principal");
+                //await _userManager.AddToRoleAsync(loggeduser, "Captain");
+
+
+
 
                 var users = await _context.Users
                     .OrderByDescending(d => d.RegisterDate)

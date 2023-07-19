@@ -32,11 +32,11 @@ namespace VIEW.Controllers
         public async Task<IActionResult> Index(string? BookSerialNo, int pg=1)
         {
             _logger.LogInformation("Received GET Request by Controller: {Controller}," +
-                " Action: {ControllerAction}, DateTime: {DateTime}", new object[]
-                {
+                " Action: {ControllerAction}, DateTime: {DateTime}", 
+                
                     nameof(BorrowingController), nameof(Index),
                     DateTime.Now.ToString()
-                });
+                );
 
             if (String.IsNullOrEmpty(BookSerialNo))
             {

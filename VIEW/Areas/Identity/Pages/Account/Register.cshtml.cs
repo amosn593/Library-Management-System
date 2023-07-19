@@ -119,12 +119,12 @@ namespace USERVIEW.Areas.Identity.Pages.Account
             {
                 Response.Redirect("/");
             }
-            else
-            {
-                // Prevent people from registering
-               Response.Redirect("/Identity/Account/Login");
+            //else
+            //{
+            //    // Prevent people from registering
+            //   Response.Redirect("/Identity/Account/Login");
                
-            }
+            //}
 
             
 
