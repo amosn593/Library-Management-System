@@ -4,7 +4,6 @@ using DOMAIN.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using USERVIEW.Areas.Identity.Data;
 
 namespace VIEW.Controllers
